@@ -14,26 +14,17 @@ public:
     int util(TreeNode* root, int &sum){
         if(root == NULL)
             return 0;
-        if(root->left == NULL and root->right == NULL){
-            sum = max(sum, root->val);
-            return root->val;
-        }
             
-        int a = util(root->left, sum);
-        int b = util(root->right, sum);
+        int a = max(util(root->left, sum), 0);
+        int b = max(util(root->right, sum), 0);
 
-        sum = max(max(sum, max(root->val, root->val + a + b)), max(a, b) + root->val);
-        return max(max(a, b) + root->val, root->val);
-        // sum = max(sum, max(max(root->val + a, root->val + b), root->val+a+b));
-        // cout << "sum : " << sum <<endl;
-        // cout << "a : " << a <<endl;
-        // cout << "b : " << b <<endl;
-        // cout << "root->val : " << root->val <<endl; 
-        // return sum;
+        sum =max(sum, root->val + a+ b);
+        return max(a, b) + root->val;
+       
     }
     int maxPathSum(TreeNode* root) {
         int sum = INT_MIN;
         int res = util(root, sum);
-        return max(res, sum);
+        return sum; //max(res, sum);
     }
 };

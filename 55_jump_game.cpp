@@ -1,15 +1,26 @@
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        
-        int minjumps = 0;
+        int dist = nums[0];
+
         int n = nums.size();
-        for(int i = n-2; i>= 0; i--){
-            minjumps++;
-            if(nums[i] >= minjumps)
-                minjumps = 0;
+        for(int i = 1; i < n-1; i++){
+            if(i <= dist)
+                dist = max(dist, i + nums[i]);
+            else
+                return false;
         }
-        return (minjumps==0);
+        return dist >= n-1;
+
+
+        // int minjumps = 0;
+        // int n = nums.size();
+        // for(int i = n-2; i>= 0; i--){
+        //     minjumps++;
+        //     if(nums[i] >= minjumps)
+        //         minjumps = 0;
+        // }
+        // return (minjumps==0);
 
         //Failing for the last test case [1,0,8,0]
         // int n = nums.size();
