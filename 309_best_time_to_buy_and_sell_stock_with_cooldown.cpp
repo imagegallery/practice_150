@@ -6,10 +6,13 @@ public:
     /*
 
         sell[i]=max(buy[i-1]+prices[i], sell[i-1]-prices[i-1]+prices[i]);
-buy[i-1]+prices[i] represents buy the stock on day i-1 and sell it on day i; sell[i-1]-prices[i-1]+prices[i] represents you didn't sell the stock on day i-1 but sell it on day i (bought stock back and sell it on day i).
+buy[i-1]+prices[i] represents buy the stock on day i-1 and sell it on day i; 
+sell[i-1]-prices[i-1]+prices[i] represents you didn't sell the stock on day i-1 but sell 
+it on day i (bought stock back and sell it on day i).
 
 buy[i]=max(sell[i-2]-prices[i], buy[i-1]+prices[i-1]-prices[i]);
-sell[i-2]-prices[i] means sold the stock on day i-2 and buy it on day i (day i-1 is cooldown). buy[i-1]+prices[i-1]-prices[i] means you didn't buy the stock on day i-1 but buy it on day i.
+sell[i-2]-prices[i] means sold the stock on day i-2 and buy it on day i (day i-1 is cooldown). 
+buy[i-1]+prices[i-1]-prices[i] means you didn't buy the stock on day i-1 but buy it on day i.
 
     */
 
@@ -25,7 +28,7 @@ sell[i-2]-prices[i] means sold the stock on day i-2 and buy it on day i (day i-1
             if(i==1)
                 buy[1] = buy[0] + prices[0] - prices[1];
             else
-             buy[i] = max(sell[i-2] - prices[i], buy[i-1] + prices[i-1] - prices[i]);
+                buy[i] = max(sell[i-2] - prices[i], buy[i-1] + prices[i-1] - prices[i]);
         }
         return res;
     }
